@@ -10,8 +10,8 @@
 
 ## Installing this project
     You can install this project through a terminal using [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). By entering this following command
-    ```
-    git clone https://github.com/963358/fourier-drawer
+    
+    ```git clone https://github.com/963358/fourier-drawer
 
     ```
 
