@@ -1,3 +1,4 @@
+manimpango
 ffmpeg
 scipy
 pycairo
