@@ -4,7 +4,7 @@
 
 if [[ "$OSTYPE" == "darwin"* ]]
 then
-    brew install $(mac-install.txt)
+    brew install $(cat mac-install.txt)
 else
 
 pip install -r requirements.txt
