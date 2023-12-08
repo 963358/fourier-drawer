@@ -1,4 +1,7 @@
+scipy
 pkg-config
 cairo
 pango
 ffmpeg
+pycairo
+manimpango

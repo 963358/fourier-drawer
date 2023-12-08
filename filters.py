@@ -20,7 +20,11 @@ contours, hierarchy = cv2.findContours(edged,
 cv2.imshow('Canny Edges After Contouring', edged) 
 cv2.waitKey(0) 
 
-#Find edges of contours to crop later on
+#numpydata = asarray(edged)
+#print(numpydata) 
+
+
+#Find edges of contours
 minX = 99999999
 maxX = 0
 minY = 99999999
