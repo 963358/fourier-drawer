@@ -17,5 +17,11 @@ Or you can simply download as a zip
 ![install-zip](readme_images/install-zip.png)
 
 
-   
+## Installing dependencies
+The required libraries is located in the requirements.txt file. In order to install the within a terminal, go to the project folder and enter the following command. 
+```
+pip -r requirements.txt
+```
+
+Alternatively, double click the setup.sh file inside the project. 
 

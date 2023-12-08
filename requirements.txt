@@ -1,6 +1,2 @@
-manimpango
 ffmpeg
-scipy
-pycairo
 manim
-

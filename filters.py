@@ -17,8 +17,8 @@ contours, hierarchy = cv2.findContours(edged,
 cv2.imshow('Canny Edges After Contouring', edged) 
 cv2.waitKey(0) 
 
-#numpydata = asarray(edged)
-#print(numpydata) 
+numpydata = asarray(edged)
+print(numpydata) 
 
 
 #Find edges of contours
