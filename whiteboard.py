@@ -1,14 +1,18 @@
 import tkinter as tk
-from PIL import ImageGrab
-
+from PIL import ImageGrab, Image
+import cv2
 
 class WhiteboardApp:
     def __init__(self, root):
+
         self.root = root
         self.root.title("Whiteboard")
 
         self.canvas = tk.Canvas(root, width=1000, height=700, bg="white")
         self.canvas.pack()
+
+        self.width = 1000
+        self.height = 700
 
         self.draw_button = tk.Button(root, text="Draw", command=self.start_draw)
         self.draw_button.pack(side=tk.LEFT)
@@ -19,8 +23,8 @@ class WhiteboardApp:
         self.clear_button = tk.Button(root, text="Clear", command=self.clear_canvas)
         self.clear_button.pack(side=tk.LEFT)
 
-        # self.save_button = tk.Button(root, text="Save", command=self.save_canvas)
-        # self.clear_button.pack(side=tk.LEFT)
+        self.save_button = tk.Button(root, text="Save", command=self.save_canvas)
+        self.save_button.pack(side=tk.LEFT)
 
         self.drawing = False
         self.erasing = False
@@ -71,12 +75,41 @@ class WhiteboardApp:
             x, y = event.x, event.y
             self.canvas.create_rectangle(x - 5, y - 5, x + 5, y + 5, fill="white", outline="white")
     
-    #def
+    # def save_canvas(self):
+    #     im2 = ImageGrab.grab(bbox =(0, 0, self.width, self.height))
+    #     im2.show()
+    # def save_canvas(self):
+    #     # save postscipt image 
+    #     fileName = "saved_image"
+    #     self.canvas.postscript(file = fileName + '.eps') 
+    #     # use PIL to convert to PNG 
+    #     img = Image.open(fileName + '.eps') 
+
+    #     #img.save(fileName + '.png', 'png')
+    #     #img.show()
+    
+    def save_canvas(self):
+        widget = self.canvas
+        x=self.root.winfo_rootx()+widget.winfo_x()
+        y=self.root.winfo_rooty()+widget.winfo_y()
+        # x1=x+widget.winfo_width()*2
+        # y1=y+widget.winfo_height()
+        x1 = x + 1000
+        y1 = y + 700
+        img2 = ImageGrab.grab(bbox = (x, y, x1, y1))
+        #.crop((x,y,x1,y1))
+        img2.show()
+        self.root.destroy()
+        return img2
 
     def clear_canvas(self):
         self.canvas.delete("all")
 
+# app = WhiteboardApp(None)
+# app.mainloop()
 if __name__ == "__main__":
+    
     root = tk.Tk()
     app = WhiteboardApp(root)
-    root.mainloop()
+    img2 = root.mainloop()
+    print(img2)
