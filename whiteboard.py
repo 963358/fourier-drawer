@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter.messagebox import askyesno
-from PIL import ImageGrab, Image
-import cv2
+from tkinter.filedialog import askopenfilename
+from PIL import Image, ImageTk
 import time
 import os
 
@@ -32,12 +32,24 @@ class WhiteboardApp:
         self.save_button = tk.Button(root, text="Save and generate fourier epicycles", command=self.save_canvas)
         self.save_button.pack(side=tk.LEFT)
 
+        self.load_button = tk.Button(root, text="Load an Image", command=self.load_image)
+        self.load_button.pack(side=tk.LEFT)
+
+
         self.drawing = False
         self.erasing = False
         self.last_x, self.last_y = None, None
 
         self.canvas.bind("<Button-1>", self.start_action)
         self.canvas.bind("<B1-Motion>", self.draw_or_erase)
+
+
+    def load_image(self):
+        self.path = askopenfilename()
+        if type(self.path) is not tuple and self.path != "":
+            self.root.destroy()
+
+
 
     def start_action(self, event):
         if self.drawing:

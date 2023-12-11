@@ -7,7 +7,7 @@ if __name__ == '__main__':
     app = whiteboard.WhiteboardApp(root)
     root.mainloop()
     filename = app.path
-
+    
     print(filename)
     if not filename:
         pass
