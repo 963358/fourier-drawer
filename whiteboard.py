@@ -94,7 +94,8 @@ class WhiteboardApp:
         self.postcript(file=filename+'.eps')
         saved_img = Image.open(filename + '.eps')
         
-        saved_img.save(os.path.join(os.getcwd(), 'images', filename) '.png', 'png')
+        global path = os.path.join(os.getcwd(), 'images', filename) + ".png"
+        saved_img.save(path, 'png')
         
         self.destroy
 
