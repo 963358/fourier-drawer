@@ -80,8 +80,9 @@ class WhiteboardApp:
         saved_img = Image.open(filename + '.eps')
         
         self.path = os.path.join(os.getcwd(), 'images', filename) + ".png"
-
         saved_img.save(self.path, 'png')
+
+        os.remove(filename+'.eps')
         self.root.destroy()
     
     def clear_canvas(self):
