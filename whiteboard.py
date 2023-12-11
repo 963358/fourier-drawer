@@ -8,6 +8,8 @@ import os
 class WhiteboardApp:
     def __init__(self, root):
 
+        self.path = ""
+        
         self.root = root
         self.root.title("Whiteboard")
 
@@ -36,7 +38,6 @@ class WhiteboardApp:
 
         self.canvas.bind("<Button-1>", self.start_action)
         self.canvas.bind("<B1-Motion>", self.draw_or_erase)
-        self.canvas.bind("<ButtonRelease-1>", self.stop_action)
 
     def start_action(self, event):
         if self.drawing:
@@ -44,31 +45,17 @@ class WhiteboardApp:
         elif self.erasing:
             self.start_erase(event)
 
-    def stop_action(self, event):
-        if self.drawing:
-            self.stop_draw(event)
-        elif self.erasing:
-            self.stop_erase(event)
-
     def start_draw(self, event=None):
         self.drawing = True
         self.erasing = False
         if event:
             self.last_x, self.last_y = event.x, event.y
 
-    def stop_draw(self, event=None):
-        self.drawing = False
-        self.erasing = False
-
     def start_erase(self, event=None):
         self.erasing = True
         self.drawing = False
         if event:
             self.last_x, self.last_y = event.x, event.y
-
-    def stop_erase(self, event=None):
-        self.erasing = False
-        self.drawing = False
 
     def draw_or_erase(self, event):
         if self.drawing:
@@ -82,7 +69,7 @@ class WhiteboardApp:
     def save_canvas(self):
         filename = time.ctime()
         
-        message = f"Generating fourier epicycles will lose the ability to further edit your drawings but will save it as a png inside the project image folder as (/images/{filename})"
+        message = f"Generating fourier epicycles will save the current canvas as a png inside the project image folder (/images/{filename})"
         
         answer = askyesno("Confirmation", message)
         
@@ -92,17 +79,10 @@ class WhiteboardApp:
         self.canvas.postscript(file=filename+'.eps')
         saved_img = Image.open(filename + '.eps')
         
-        path = os.path.join(os.getcwd(), 'images', filename) + ".png"
-        
-        saved_img.save(path, 'png')
+        self.path = os.path.join(os.getcwd(), 'images', filename) + ".png"
 
-        
-        
+        saved_img.save(self.path, 'png')
+        self.root.destroy()
+    
     def clear_canvas(self):
         self.canvas.delete("all")
-
-global path
-
-root = tk.Tk()
-app = WhiteboardApp(root)
-root.mainloop()
