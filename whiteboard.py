@@ -89,19 +89,20 @@ class WhiteboardApp:
         if not answer:
             return
 
-        self.postcript(file=filename+'.eps')
+        self.canvas.postscript(file=filename+'.eps')
         saved_img = Image.open(filename + '.eps')
         
-        global path
         path = os.path.join(os.getcwd(), 'images', filename) + ".png"
         
         saved_img.save(path, 'png')
-        
-        self.destroy()
 
+        
+        
     def clear_canvas(self):
         self.canvas.delete("all")
-    
+
+global path
+
 root = tk.Tk()
 app = WhiteboardApp(root)
 root.mainloop()
