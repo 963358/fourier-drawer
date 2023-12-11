@@ -27,8 +27,7 @@ class WhiteboardApp:
         self.clear_button = tk.Button(root, text="Clear", command=self.clear_canvas)
         self.clear_button.pack(side=tk.LEFT)
 
-        self.save_button = tk.Button(root, text="Save and generate fourier \
-        epicycles", command=self.save_canvas)
+        self.save_button = tk.Button(root, text="Save and generate fourier epicycles", command=self.save_canvas)
         self.save_button.pack(side=tk.LEFT)
 
         self.drawing = False
@@ -83,21 +82,22 @@ class WhiteboardApp:
     def save_canvas(self):
         filename = time.ctime()
         
-        answer = askyesno(title="Confirmation", 
-        f'Generating fourier epicycles will lose the ability to further edit\
-        your drawings but will save it as a png inside the project image folder \
-        (/images/{filename})')
+        message = f"Generating fourier epicycles will lose the ability to further edit your drawings but will save it as a png inside the project image folder as (/images/{filename})"
         
-        if answer is not:
+        answer = askyesno("Confirmation", message)
+        
+        if not answer:
             return
 
         self.postcript(file=filename+'.eps')
         saved_img = Image.open(filename + '.eps')
         
-        global path = os.path.join(os.getcwd(), 'images', filename) + ".png"
+        global path
+        path = os.path.join(os.getcwd(), 'images', filename) + ".png"
+        
         saved_img.save(path, 'png')
         
-        self.destroy
+        self.destroy()
 
     def clear_canvas(self):
         self.canvas.delete("all")
