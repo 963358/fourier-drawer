@@ -24,20 +24,60 @@ def start_filter(path):
 
     contours, hierarchy = cv2.findContours(edged,  
     cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) 
-  
+    cropped = crop_image(edged, contours)
     cv2.imshow('Canny Edges After Contouring', edged) 
+    cv2.imshow('Cropped Image', cropped)
     
     cv2.waitKey(0) 
 
 #numpydata = asarray(edged)
 #print(numpydata) 
 
+def crop_image (edged, contours):
+    minX = 99999999
+    maxX = 0
+    minY = 99999999
+    maxY = 0
+
+    for cntr in contours:
+        x,y,w,h = cv2.boundingRect(cntr)
+        cv2.rectangle(edged, (x, y), (x+w, y+h), (0, 0, 255), 2)
+        print("x,y,w,h:",x,y,w,h)
+
+        maxX = max(maxX, x+w)
+        minX = min(minX, x)
+        
+        maxY = max(maxY, y+h)
+        minY = min(minY, y)
+
+        crop_img = edged[minY:maxY, minX:maxX]
+        return crop_img
+
+
+
+# def make_coordinates (edged):
+#     white_pixels = []
+#     x_pixels = []
+#     y_pixels = []
+#     #make pixels into vectors relative to the origin
+#     for y in range(0, h):
+#         for x in range(0, w):
+#             # threshold the pixel
+#             if(crop_img[y, x]>0):
+#                 #cv2.circle(img, (x, y), radius=0, color=(0, 0, 255), thickness=-1)
+#                 # x_pixels.append(x-originX)
+#                 # y_pixels.append(originY-y)
+
+#                 arr = []
+#                 arr.append(x - originX)
+#                 arr.append(originY - y)
+#                 white_pixels.append(arr)
 
 #Find edges of contours
-minX = 99999999
-maxX = 0
-minY = 99999999
-maxY = 0
+# minX = 99999999
+# maxX = 0
+# minY = 99999999
+# maxY = 0
 #for cntr in contours:
 #    x,y,w,h = cv2.boundingRect(cntr)
 #    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
