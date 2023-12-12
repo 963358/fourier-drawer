@@ -96,6 +96,7 @@ class WhiteboardApp:
         saved_img = Image.open(filename + '.eps')
         
         self.path = os.path.join(os.getcwd(), 'images', filename) + ".png"
+        print("yerherher", self.path)
         saved_img.save(self.path, 'png')
 
         os.remove(filename+'.eps')

@@ -20,8 +20,9 @@ def start_filter(path):
 
     contours, hierarchy = cv2.findContours(edged,  
     cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) 
-    cropped = crop_image(edged, contours)
     cv2.imshow('Canny Edges After Contouring', edged) 
+   
+    cropped = crop_image(edged, contours)
     cv2.imshow('Cropped Image', cropped)
     
     cv2.waitKey(0) 
