@@ -4,21 +4,30 @@ import numpy
 import sys
 import matplotlib.pyplot as plt
 
-#load in image
-img = cv2.imread("premierleagueLOGO.jpeg", cv2.IMREAD_COLOR)
-cv2.imshow("image", img)
-font = cv2.FONT_HERSHEY_COMPLEX 
 
-#Filters to distinguish edges of image
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
-edged = cv2.Canny(gray, 30, 200) 
-cv2.waitKey(0)
+def start_filter(path):
+    image_path = path 
+    #load in image
+    gray = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+    img_copy = gray.copy()
 
-contours, hierarchy = cv2.findContours(edged,  
-    cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE) 
+    blur = cv2.GaussianBlur(gray, (5,5), 0)
+    # apply canny filter
+    edged = cv2.Canny(blur, 150, 200)
+
+    cv2.imshow("edged", edged)
+    # filter noise
+
+    # thresholding to binary
+    #ret, th = cv2.threshold(edged, 200, 255, cv2.THRESH_TOZERO)
+
+
+    contours, hierarchy = cv2.findContours(edged,  
+    cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) 
   
-cv2.imshow('Canny Edges After Contouring', edged) 
-cv2.waitKey(0) 
+    cv2.imshow('Canny Edges After Contouring', edged) 
+    
+    cv2.waitKey(0) 
 
 #numpydata = asarray(edged)
 #print(numpydata) 
@@ -29,28 +38,28 @@ minX = 99999999
 maxX = 0
 minY = 99999999
 maxY = 0
-for cntr in contours:
-    x,y,w,h = cv2.boundingRect(cntr)
-    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
-    print("x,y,w,h:",x,y,w,h)
-
-    maxX = max(maxX, x+w)
-    minX = min(minX, x)
+#for cntr in contours:
+#    x,y,w,h = cv2.boundingRect(cntr)
+#    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
+#    print("x,y,w,h:",x,y,w,h)
+#
+#    maxX = max(maxX, x+w)
+#    minX = min(minX, x)
         
-    maxY = max(maxY, y+h)
-    minY = min(minY, y)
+#    maxY = max(maxY, y+h)
+#    minY = min(minY, y)
 
 #Drawing a box around the area of interest
-line_thickness = 2
-cv2.line(img, (minX, minY), (maxX, minY), (0, 255, 0), thickness=line_thickness)
-cv2.line(img, (minX, minY), (minX, maxY), (0, 255, 0), thickness=line_thickness)
-cv2.line(img, (maxX, minY), (maxX, maxY), (0, 255, 0), thickness=line_thickness)
-cv2.line(img, (minX, maxY), (maxX, maxY), (0, 255, 0), thickness=line_thickness)
+#line_thickness = 2
+#cv2.line(img, (minX, minY), (maxX, minY), (0, 255, 0), thickness=line_thickness)
+#cv2.line(img, (minX, minY), (minX, maxY), (0, 255, 0), thickness=line_thickness)
+#cv2.line(img, (maxX, minY), (maxX, maxY), (0, 255, 0), thickness=line_thickness)
+#cv2.line(img, (minX, maxY), (maxX, maxY), (0, 255, 0), thickness=line_thickness)
 
 
 #cv2.imshow("bounding_box", img)
 #cv2.waitKey(0)
-
+"""
 #Crop image to only include the contours (excess space gone)
 crop_img = edged[minY:maxY, minX:maxX]
 originX = (int)((maxX-minX)/2)
@@ -94,8 +103,8 @@ for y in range(0, h):
 
 #for x in range(1000):
 
-print(white_pixels)
-cv2.destroyAllWindows()
+#print(white_pixels)
+#cv2.destroyAllWindows()
 
 
 
@@ -146,4 +155,4 @@ cv2.destroyAllWindows()
 # Showing the final image. 
 # cv2.imshow('image2', edged) 
 # cv2.waitKey(0)
-
+"""

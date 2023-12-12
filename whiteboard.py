@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 import time
 import os
 
+
 class WhiteboardApp:
     def __init__(self, root):
 
@@ -46,8 +47,11 @@ class WhiteboardApp:
 
     def load_image(self):
         self.path = askopenfilename()
-        if type(self.path) is not tuple and self.path != "":
-            self.root.destroy()
+        ext = ["jpg", "jpeg", "png"]
+        if (type(self.path) is not tuple and self.path != ""):
+            if(self.path.split('.')[-1] in ext):
+                print(self.path.split('.')[-1])
+                self.root.destroy()
 
 
 

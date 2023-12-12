@@ -1,5 +1,6 @@
 import tkinter as tk
 import whiteboard
+import filters
 
 if __name__ == '__main__':
     # filename is null if click on load button
@@ -9,6 +10,5 @@ if __name__ == '__main__':
     filename = app.path
     
     print(filename)
-    if not filename:
-        pass
-        # load image instead
+    filters.start_filter(filename)
+
