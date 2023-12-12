@@ -5,3 +5,4 @@ pango
 ffmpeg
 pycairo
 manimpango
+ghostscript
