@@ -11,15 +11,11 @@ def start_filter(path):
     gray = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     img_copy = gray.copy()
 
+    # filter 
     blur = cv2.GaussianBlur(gray, (5,5), 0)
+
     # apply canny filter
     edged = cv2.Canny(blur, 150, 200)
-
-    cv2.imshow("edged", edged)
-    # filter noise
-
-    # thresholding to binary
-    #ret, th = cv2.threshold(edged, 200, 255, cv2.THRESH_TOZERO)
 
 
     contours, hierarchy = cv2.findContours(edged,  
