@@ -20,21 +20,25 @@ def start_filter(path):
 
     contours, hierarchy = cv2.findContours(edged,  
     cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) 
-    cv2.imshow('Canny Edges After Contouring', edged) 
    
-    cropped = crop_image(edged, contours)
-    cv2.imshow('Cropped Image', cropped)
+    cv2.imshow('Contours after canny filter', edged)
+
+    #cropped = crop_image(edged, contours)
+    #cv2.imshow('Cropped Image', cropped)
 
     cv2.waitKey(0) 
 
-    originX = cropped.shape[1]/2
-    originY = cropped.shape[0]/2
+    #originX = cropped.shape[1]/2
+    #originY = cropped.shape[0]/2
 
-    white_pixels = make_coordinates(cropped, originX, originY)
+    originX = edged.shape[1]/2
+    originY = edged.shape[0]/2
+
+    white_pixels = make_coordinates(edged, originX, originY)
     #print (white_pixels)
 
     pixels_polar = make_polar(white_pixels)
-    print(pixels_polar)
+    #print(pixels_polar)
 
     x_array = []
     y_array = []
