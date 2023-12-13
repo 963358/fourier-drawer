@@ -1,16 +1,22 @@
 from manim import *
 
-class epicycles(Scene):
-    def __init__(self, filename, data):
-        self.filename = filename
-        print(self.filename)
+class createEpicycles(Scene):
+    
+    def accessData(self, filename, data):
         
+        global polar
+        global image_path
+
+        image_path = filename
+        polar = data
+
+    def setup(self): #don't use init
+            
         config.quiet = True
-        config.quality = "480p15"
+        config.quality = "low_quality"
         config.open = True
 
     #def gen_epicyles():
-        
 
 
     def construct(self):
@@ -27,6 +33,8 @@ class epicycles(Scene):
 
     #    gen_epicycles = fourier_epicycles()
             
-        self.play(epicycles(self.fourier))
+        #self.play(epicycles(self.fourier))
 
 
+    #def addPoints():
+        

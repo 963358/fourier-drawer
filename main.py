@@ -12,11 +12,12 @@ if __name__ == '__main__':
     filename = app.path
     
     print(filename)
-    filters.start_filter(filename)
+    polar = filters.start_filter(filename)
     #cords = filters.getCords()
 
     
-    scene = epicycles(filename)
-    scene.render()
+    scene = epicycles.createEpicycles()
+    scene.accessData(filename, polar)
+    scene.render(scene)
 #    open_media_file(scene.renderer.file_writer.movie_file_path)
 

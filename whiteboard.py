@@ -33,7 +33,7 @@ class WhiteboardApp:
         self.save_button = tk.Button(root, text="Save and generate fourier epicycles", command=self.save_canvas)
         self.save_button.pack(side=tk.LEFT)
 
-        self.load_button = tk.Button(root, text="Load an Image", command=self.load_image)
+        self.load_button = tk.Button(root, text="Load an Image (.png, .jpeg/jpg)", command=self.load_image)
         self.load_button.pack(side=tk.LEFT)
 
 
