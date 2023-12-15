@@ -15,7 +15,7 @@ if __name__ == '__main__':
     polar = filters.start_filter(filename)
     #cords = filters.getCords()
 
-    
+#    print(polar)    
     scene = epicycles.createEpicycles()
     scene.accessData(filename, polar)
     scene.render(scene)

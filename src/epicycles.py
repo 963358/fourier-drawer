@@ -19,17 +19,29 @@ class createEpicycles(Scene):
     #def gen_epicyles():
 
 
+
+    def generate_points(cplane, points):
+        print("FIRST")
+        for dot in points:
+            r = points[dot][0]
+            cosine = points[dot][1]
+            sine = points[dot][2]
+            self.add(Dot(cplane.n2p(r*cosine + r*sinej), color = YELLOW))
+    
     def construct(self):
+        print("SECOND")
         plane = ComplexPlane().add_coordinates()
         self.add(plane)
-        d1 = Dot(plane.n2p(2 + 1j), color=YELLOW)
-        d2 = Dot(plane.n2p(-3 - 2j), color=YELLOW)
+
+        generate_points(plane, data)
+        #d1 = Dot(plane.n2p(2 + 1j), color=YELLOW)
+        #d2 = Dot(plane.n2p(-3 - 2j), color=YELLOW)
         
 
-        self.add(
-            d1,
-            d2,
-        )
+#        self.add(
+#            d1,
+#            d2,
+#        )
 
     #    gen_epicycles = fourier_epicycles()
             

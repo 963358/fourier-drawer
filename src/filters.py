@@ -57,10 +57,12 @@ def start_filter(path):
 #numpydata = asarray(edged)
 #print(numpydata) 
 
+
+# probably won't use
 def crop_image (edged, contours):
-    minX = 99999999
+    minX = math.inf
     maxX = 0
-    minY = 99999999
+    minY = math.inf
     maxY = 0
 
     for cntr in contours:
