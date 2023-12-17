@@ -83,7 +83,7 @@ class WhiteboardApp:
             self.canvas.create_rectangle(x - 5, y - 5, x + 5, y + 5, fill="white", outline="white")
     
     def save_canvas(self):
-        filename = time.ctime()
+        filename = time.strftime("%Y-%m-%d-%H-%M-%S")
         
         message = f"Generating fourier epicycles will save the current canvas as a png inside the project image folder (/images/{filename})"
         
