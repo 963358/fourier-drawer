@@ -1,6 +1,5 @@
 import cv2
-from numpy import asarray
-import numpy
+import numpy as np
 import sys
 import matplotlib.pyplot as plt
 import math
@@ -10,8 +9,7 @@ def start_filter(path):
     image_path = path 
     #load in image
     gray = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-    img_copy = gray.copy()
-
+    
     # filter 
     blur = cv2.GaussianBlur(gray, (5,5), 0)
 
@@ -50,8 +48,7 @@ def start_filter(path):
     
     plt.plot(x_array, y_array, 'o')
     plt.show()
-
-    return pixels_polar  
+    return np.stack((x_array, y_array), axis= -1), gray.shape  
 
 
 #numpydata = asarray(edged)
