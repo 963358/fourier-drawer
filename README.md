@@ -23,5 +23,14 @@ The required libraries is located in the requirements.txt file. In order to inst
 pip -r requirements.txt
 ```
 
-Alternatively, double click the setup.sh file inside the project. 
+Alternatively, run the setup.sh file inside the project. 
+For Windows, enter the following command inside your command prompt:
+```
+setup.sh
+```
+
+Or Mac users, enter the following command inside your command prompt:
+```
+./setup.sh
+```
 
