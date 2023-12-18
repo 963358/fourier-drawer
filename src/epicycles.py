@@ -33,6 +33,8 @@ class createEpicycles(Scene):
 
 
     def construct(self):
+        # plane offset for graphing
+        offset = 200 
         
         print("constructing plane")
         
@@ -48,11 +50,18 @@ class createEpicycles(Scene):
         print("range: ", min_range, max_range)
         print("domain: ", min_domain, max_domain)
 
-        plane = ComplexPlane(x_range= [min_domain - 200, max_domain + 200, 50], y_range = [min_range - 200, max_range + 200, 50], x_length = 10, y_length = 10)
+        plane = ComplexPlane(x_range= [min_domain - offset, max_domain + offset, 50], y_range = [min_range - offset, max_range + offset, 50], x_length = 10, y_length = 10)
         
 
         self.add(plane)
 
         self.generate_points(plane, complx)
 
+
+    def draw_circles(fourier):
+        # 0 complx 
+        # 1 freq
+        # 2 amp 
+        # 3 phase
         
+
