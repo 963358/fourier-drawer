@@ -5,7 +5,7 @@ You can install this repository in several ways.
 ## Install Python
 The project uses Python along with a number of pip packages.
 
-To install pip, go to their [website](https://www.python.org/) and follow their instructions for your own respective operating system.
+To install pip, go to their [website](https://www.python.org/) and follow their instructions for your own respective operating system. PLEASE MAKE SURE TO INSTALL PYTHON TO PATH IN THEIR INSTALL WIZARD !!!
 
 
 ## Installing this project
