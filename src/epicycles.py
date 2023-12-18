@@ -4,53 +4,55 @@ class createEpicycles(Scene):
     
     def accessData(self, filename, data, shape):
         
-        global polar
+        global complx
         global image_path
         global image_shape
         
         image_path = filename
-        polar = data
+        complx = data
         image_shape = shape
 
     def setup(self): #don't use init
             
-        config.quiet = True
+        #config.pixel_width = image_shape[1]
+        #config.pixel_height = image_shape[0]
+        
+
+
         config.quality = "low_quality"
+        config.quiet = True
         config.open = True
 
 
 
     def generate_points(self, cplane, points):
-        print("generating points")
-        for dot in points:
-            comp = complex(dot[0], dot[1])
-            self.add(Dot(cplane.n2p(comp), color = YELLOW))
+        print("generating points... might take a while :( ")
+        
+        for dot in points: 
+            self.add(Dot(cplane.n2p(dot), color = YELLOW))
 
 
     def construct(self):
         
         print("constructing plane")
         
-        np_polar = np.array(polar)
+        np_complx = np.array(complx)
 
         
-        max_polar = np_polar.max(axis=0)
+        max_domain = np_complx.real.max()
+        max_range = np_complx.imag.max()
+
+        min_domain = np_complx.real.min()
+        min_range = np_complx.imag.min()
         
-        max_domain = max_polar[0]
-        max_range = max_polar[1]
+        print("range: ", min_range, max_range)
+        print("domain: ", min_domain, max_domain)
 
-        min_polar = np_polar.min(axis=0)
-
-        min_domain = min_polar[0]
-        min_range = min_polar[1]
-
-        print(min_domain, max_domain)
-        print(min_range, max_range)
-        #plane = ComplexPlane(x_range= [min_domain, max_domain, 20], y_range = [min_range, max_range, 20], x_length = 30, y_length = 30)
-        plane = ComplexPlane(x_range= [-200,200,20], y_range = [-200, 200, 20], x_length = 30, y_length = 30)
+        plane = ComplexPlane(x_range= [min_domain - 200, max_domain + 200, 50], y_range = [min_range - 200, max_range + 200, 50], x_length = 10, y_length = 10)
+        
 
         self.add(plane)
 
-        self.generate_points(plane, polar)
+        self.generate_points(plane, complx)
 
         

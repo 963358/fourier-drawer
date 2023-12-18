@@ -34,24 +34,30 @@ def start_filter(path):
     originY = edged.shape[0]/2
 
     white_pixels = make_coordinates(edged, originX, originY)
+    print("original pixel length: ", len(white_pixels))
+    
+    while len(white_pixels) > 3000:
+        # delete every 2nd element so that len/2
+        del white_pixels[1::2]
 
-    pixels_polar = make_polar(white_pixels)
+    print("truncated length of pixels: ", len(white_pixels))
+    
 
-
+    # pixels_polar = make_polar(white_pixels)
     
 
     x_array = []
     y_array = []
 
-    for white in pixels_polar:
-        x_array.append(white[0])
-        y_array.append(white[1])
+    for white in white_pixels:
+        x_array.append(white.real)
+        y_array.append(white.imag)
     
     plt.plot(x_array, y_array, 'o')
 
     plt.show()
     
-    return pixels_polar, gray.shape
+    return white_pixels, edged.shape
 
 
 
@@ -66,10 +72,12 @@ def make_coordinates (cropped, originX, originY):
         for x in range(0, w):
             # threshold the pixel
             if(cropped[y, x]>0):
-                white_pixels.append([x - originX, originY - y])
+                white_pixels.append(complex(x - originX, originY - y))
     
     return white_pixels
 
+
+# delete this function, no need to use 
 def make_polar (white_pixels):
     polar = []
     for pixel in white_pixels:
