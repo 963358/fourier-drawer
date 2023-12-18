@@ -13,7 +13,7 @@ You can install this project through a terminal using [git](https://git-scm.com/
 ```
 git clone https://github.com/963358/fourier-drawer
 ```
-Or you can simply download as a zip 
+Or you can simply download as a zip \
 ![install-zip](readme_images/install-zip.png)
 
 
@@ -23,7 +23,7 @@ The required libraries is located in the requirements.txt file. In order to inst
 pip -r requirements.txt
 ```
 
-Alternatively, run the setup.sh file inside the project. 
+Alternatively, you can run the setup.sh file inside the project. \
 For Windows, enter the following command inside your command prompt:
 ```
 setup.sh
