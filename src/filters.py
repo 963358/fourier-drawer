@@ -4,7 +4,7 @@ import sys
 import matplotlib.pyplot as plt
 import math
 
-max_points = 3 
+max_points = 30 
 
 def start_filter(path):
     image_path = path 
@@ -62,7 +62,7 @@ def start_filter(path):
     
     plt.plot(x_array, y_array, 'o')
 
-    plt.show()
+    #plt.show()
     
     return np.array(white_pixels), edged.shape
 

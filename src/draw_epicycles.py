@@ -26,7 +26,7 @@ def constructPlane(signal):
 
     plt.title('Fourier Epicycles, n = ' +  str(len(sorted_signal)))
 
-    anim = animate()
+#    anim = animate()
     
     #anim.save("/images/animation.gif", writer='imagemagick', fps=15)
     plt.show()
@@ -105,11 +105,14 @@ def drawEpicycles():
 
         x_val.append([first[0], initial[0]])
         y_val.append([first[1], initial[1]])
-            
-    
+        
+        if sorted_signal[0] == complx:
+            print("wowo")
+            plt.plot(x_val, y_val, '-r')
+    print(x_val[0], x_val[1])    
     lines = [x_val, y_val]
     
-#    plt.plot(x_val, y_val, '-r')
-
+    plt.plot(x_val, y_val, '-r')
+   
     return math.sqrt(initial[0]*initial[0] + initial[1]*initial[1])
 
