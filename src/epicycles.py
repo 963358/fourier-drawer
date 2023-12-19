@@ -1,4 +1,5 @@
 from manim import *
+import fourier
 
 class createEpicycles(Scene):
     
@@ -55,10 +56,12 @@ class createEpicycles(Scene):
 
         self.add(plane)
 
-        self.generate_points(plane, complx)
+        self.generate_points(plane, np_complx)
 
+        fourier.dft(np_complx)
+        
 
-    def draw_circles(fourier):
+    def draw_epicycles(fourier):
         # 0 complx 
         # 1 freq
         # 2 amp 

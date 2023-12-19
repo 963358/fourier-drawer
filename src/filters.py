@@ -4,6 +4,7 @@ import sys
 import matplotlib.pyplot as plt
 import math
 
+max_points = 200 
 
 def start_filter(path):
     image_path = path 
@@ -33,12 +34,18 @@ def start_filter(path):
     originX = edged.shape[1]/2
     originY = edged.shape[0]/2
 
+
+
     white_pixels = make_coordinates(edged, originX, originY)
     print("original pixel length: ", len(white_pixels))
-    
-    while len(white_pixels) > 3000:
+
+
+
+    while len(white_pixels) > max_points:
         # delete every 2nd element so that len/2
         del white_pixels[1::2]
+
+
 
     print("truncated length of pixels: ", len(white_pixels))
     
@@ -57,7 +64,7 @@ def start_filter(path):
 
     plt.show()
     
-    return white_pixels, edged.shape
+    return np.array(white_pixels), edged.shape
 
 
 
