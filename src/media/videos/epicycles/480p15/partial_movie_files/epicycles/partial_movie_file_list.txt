@@ -1,2 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/home/ryan/fourier-drawer/media/videos/epicycles/480p15/partial_movie_files/epicycles/1185818338_480990736_4050057940.mp4'

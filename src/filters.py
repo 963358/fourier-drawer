@@ -4,7 +4,7 @@ import sys
 import matplotlib.pyplot as plt
 import math
 
-max_points = 200 
+max_points = 3 
 
 def start_filter(path):
     image_path = path 
